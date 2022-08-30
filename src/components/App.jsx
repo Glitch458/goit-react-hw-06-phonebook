@@ -7,15 +7,10 @@ import { LOC_ST } from 'redux/contactList/slice';
 
 const App = () => {
   const contacts = useSelector(state => state.contactList);
-  const filterValue = useSelector(state => state.filterValue);
 
   useEffect(() => {
     localStorage.setItem(LOC_ST, JSON.stringify(contacts));
   }, [contacts]);
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filterValue.toLowerCase())
-  );
 
   return (
     <div>
@@ -23,7 +18,7 @@ const App = () => {
       <Form />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList contacts={filteredContacts} />
+      <ContactList />
     </div>
   );
 };
